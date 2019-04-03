@@ -8,12 +8,12 @@ An abstract class to implement event system
 
 With npm:
 ```
-npm install 'emitter'
+npm install @solaldr/emitter
 ```
 
 With yarn:
 ```
-yard add 'emitter'
+yard add @solaldr/emitter'
 ```
 
 ## How to use
