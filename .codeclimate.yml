@@ -2,3 +2,7 @@ checks:
   similar-code:
     config:
       threshold: 70
+
+exclude_patterns:
+- "coverage"
+- "test"

@@ -18,8 +18,8 @@
     "build": "rollup -c",
     "dev": "rollup -c -w",
     "pretest": "npm run build",
-    "test:report": ". .env && ./cc-test-reporter before-build && if yarn test; then ./cc-test-reporter after-build; fi",
-    "test": "jest"
+    "test": "jest",
+    "publish": "npm publish --access public"
   },
   "jest": {
     "roots": ["src", "test"],
