@@ -4,7 +4,12 @@
   "main": "dist/index.js",
   "module": "dist/index.esm.js",
   "browser": "dist/index.umd.js",
+  "license": "MIT",
+  "homepage": "https://www.github.com/SolalDR/emitter",
+  "repository": "https://www.github.com/SolalDR/emitter",
+  "bugs": "https://www.github.com/SolalDR/emitter/issues",
   "devDependencies": {
+    "jest": "^24.7.0",
     "rollup": "^1.0.0",
     "rollup-plugin-commonjs": "^9.2.0",
     "rollup-plugin-node-resolve": "^4.0.0"
@@ -12,9 +17,27 @@
   "scripts": {
     "build": "rollup -c",
     "dev": "rollup -c -w",
-    "test": "node test/test.js",
-    "pretest": "npm run build"
+    "pretest": "npm run build",
+    "test:report": ". .env && cc-test-reporter before-build && if yarn test; then cc-test-reporter after-build; fi",
+    "test": "jest"
   },
+  "jest": {
+    "roots": ["src", "test"],
+    "testMatch": ["<rootDir>/test/**/*"],
+    "collectCoverage": true,
+    "collectCoverageFrom": [
+      "<rootDir>/src/**/*"
+    ],
+    "coverageReporters": ["text", "lcov"],
+    "coverageThreshold": {
+      "global": {
+        "branches": 100,
+        "functions": 100,
+        "lines": 100,
+        "statements": 100
+      }
+    }
+},
   "files": [
     "dist"
   ]

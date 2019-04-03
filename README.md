@@ -1,5 +1,7 @@
 # Emitter
 
+[![Maintainability](https://api.codeclimate.com/v1/badges/cb31cd965230a2c407c0/maintainability)](https://codeclimate.com/github/SolalDR/emitter/maintainability)
+
 An abstract class to implement event system
 
 ## How to install 

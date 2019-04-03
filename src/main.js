@@ -18,8 +18,8 @@ module.exports = class Emitter {
    eventExist( event, callback ){
     var exist = false;
     if( this.events[ event ] ) {
-      this.events[ event ].forEach(callback => {
-        if( this.events[ event ] === callback ){
+      this.events[ event ].forEach(c => {
+        if( c === callback ){
           exist = true;
         }
       })
@@ -92,14 +92,13 @@ module.exports = class Emitter {
    */
    on( event, callback ){
     var list = event instanceof Array ? event : [ event ];
-    list.forEach( event => {
-
-      if( !this.events[ event ] ){
-        this.events[ event ] = new Map();
+    list.forEach( e => {
+      if( !this.events[ e ] ){
+        this.events[ e ] = new Map();
       }
 
-      if( this.events[ event ] && !this.eventExist( event, callback ) ) {
-        this.events[ event ].set( Symbol(), callback );
+      if( this.events[ e ] && !this.eventExist( e, callback ) ) {
+        this.events[ e ].set( Symbol(), callback );
       }
     })
 
