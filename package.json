@@ -1,5 +1,5 @@
 {
-  "name": "emitter",
+  "name": "@solaldr/emitter",
   "version": "0.0.1",
   "main": "dist/index.js",
   "module": "dist/index.esm.js",
@@ -18,7 +18,7 @@
     "build": "rollup -c",
     "dev": "rollup -c -w",
     "pretest": "npm run build",
-    "test:report": ". .env && cc-test-reporter before-build && if yarn test; then cc-test-reporter after-build; fi",
+    "test:report": ". .env && ./cc-test-reporter before-build && if yarn test; then ./cc-test-reporter after-build; fi",
     "test": "jest"
   },
   "jest": {
