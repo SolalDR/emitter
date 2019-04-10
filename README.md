@@ -13,7 +13,7 @@ npm install @solaldr/emitter
 
 With yarn:
 ```
-yard add @solaldr/emitter'
+yarn add @solaldr/emitter
 ```
 
 ## How to use
