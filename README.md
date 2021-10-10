@@ -6,7 +6,7 @@
 
 An abstract class to implement event system
 
-[Documentation](https://solaldr.github.io/emitter/index.html) — [Source](https://github.com/SolalDR/data-gui)
+[Documentation](https://solaldr.github.io/emitter/index.html) — [Source](https://github.com/SolalDR/emitter)
 
 ## How to install 
 
