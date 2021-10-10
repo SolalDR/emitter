@@ -1,24 +1,27 @@
+type EmitterCallback = (...data: unknown[]) => void
+
 /**
  * @class An abstract class to implement event system
  * @abstract
  * @author SolalDR - solal.dussout-revel@hotmail.fr
  */
-module.exports = class Emitter {
+export class Emitter {
+  private _listeners
 
   constructor() {
-    this.events = {};
+    this._listeners = {};
   }
 
   /**
-   * Test if a function is registered in the events' stack
+   * Test if a function is registered in the _listeners' stack
    * @param {string} event
    * @param {function} callback
    * @return boolean
    */
-   eventExist( event, callback ){
+   listenerExist( event: string, callback: EmitterCallback) {
     var exist = false;
-    if( this.events[ event ] ) {
-      this.events[ event ].forEach(c => {
+    if( this._listeners[ event ] ) {
+      this._listeners[ event ].forEach(c => {
         if( c === callback ){
           exist = true;
         }
@@ -33,12 +36,12 @@ module.exports = class Emitter {
    * @param {Object} args An object passed in argument of the callback
 	 * @returns {Emitter} Return "this"
    */
-   emit( event, args = {} ){
+   emit(event: string | string[], args: unknown): Emitter {
     var list = event instanceof Array ? event : [ event ];
 
     list.forEach(eventName => {
-      if( this.events[ eventName ] ) {
-        this.events[eventName].forEach(callback => {
+      if( this._listeners[ eventName ] ) {
+        this._listeners[eventName].forEach(callback => {
           callback.call( this, args );
         });
       }
@@ -49,11 +52,8 @@ module.exports = class Emitter {
 
   /**
    * Register a call-back for an event that will be triggered once.
-   * @param {string} event
-   * @param {Function} callback
-	 * @returns {Emitter} Return "this"
    */
-  once( event, callback ){
+  once(event: string, callback: EmitterCallback): Emitter {
     var onceCallback = (e)=>{
       callback.call(this, e);
       this.off(event, onceCallback);
@@ -64,14 +64,14 @@ module.exports = class Emitter {
   }
 
 	/**
-	 * Register a call-back for a list of event that will be triggered once all the events will be triggered.
-	 * @param {string[]} events 
+	 * Register a call-back for a list of event that will be triggered once all the _listeners will be triggered.
+	 * @param {string[]} _listeners 
 	 * @param {Function} callback 
 	 * @returns {Emitter} Return "this"
 	 */
-  onceAll( events, callback ){
+  onceAll( events: string[], callback: EmitterCallback): Emitter {
     var queue = events.map( event => ({ name: event, ready: false }));
-    var isReady = _ => queue.find(queueItem => !queueItem.ready ) ? false : true;
+    var isReady = () => queue.find(queueItem => !queueItem.ready ) ? false : true;
     events.forEach( (event, i) => {
       this.once(event, () => {
         queue[i].ready = true;
@@ -90,15 +90,15 @@ module.exports = class Emitter {
    * @param {Function} callback
 	 * @returns {Emitter} Return "this"
    */
-   on( event, callback ){
+   on( event: string | string[], callback: EmitterCallback ){
     var list = event instanceof Array ? event : [ event ];
     list.forEach( e => {
-      if( !this.events[ e ] ){
-        this.events[ e ] = new Map();
+      if( !this._listeners[ e ] ){
+        this._listeners[ e ] = new Map();
       }
 
-      if( this.events[ e ] && !this.eventExist( e, callback ) ) {
-        this.events[ e ].set( Symbol(), callback );
+      if( this._listeners[ e ] && !this.listenerExist( e, callback ) ) {
+        this._listeners[ e ].set( Symbol(), callback );
       }
     })
 
@@ -111,11 +111,11 @@ module.exports = class Emitter {
    * @param {Function} callback
 	 * @returns {Emitter} Return "this"
    */
-   off( event, callback ){
-    if( this.events[ event ] ){
-      this.events[ event ].forEach( (tmpCallback, i) => {
+   off( event: string, callback: EmitterCallback ){
+    if( this._listeners[ event ] ){
+      this._listeners[ event ].forEach( (tmpCallback, i) => {
         if( tmpCallback === callback ){
-          this.events[ event ].delete(i);
+          this._listeners[ event ].delete(i);
         }
       } )
     }

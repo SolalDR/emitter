@@ -1,8 +1,12 @@
 # Emitter
 
 [![Maintainability](https://api.codeclimate.com/v1/badges/cb31cd965230a2c407c0/maintainability)](https://codeclimate.com/github/SolalDR/emitter/maintainability)
+![npm bundle size (scoped)](https://img.shields.io/bundlephobia/min/@solaldr/emitter)
+![npm bundle size (scoped)](https://img.shields.io/bundlephobia/minzip/@solaldr/emitter)
 
 An abstract class to implement event system
+
+[Documentation](https://solaldr.github.io/emitter/index.html) — [Source](https://github.com/SolalDR/data-gui)
 
 ## How to install 
 
