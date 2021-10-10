@@ -1,8 +1,9 @@
 {
   "name": "@solaldr/emitter",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "main": "dist/index.js",
   "module": "dist/index.esm.js",
+  "types": "dist/index.d.ts",
   "license": "MIT",
   "homepage": "https://www.github.com/SolalDR/emitter",
   "repository": "https://www.github.com/SolalDR/emitter",
